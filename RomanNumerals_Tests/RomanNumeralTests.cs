@@ -20,6 +20,7 @@ namespace Decimal_Roman_Convertor
             DeciToRomanConvertor.Dispose();
         }
 
+        #region passed
         [TestMethod]
         public void convertTo_zero_empty()
         {
@@ -165,6 +166,18 @@ namespace Decimal_Roman_Convertor
         }
 
         [TestMethod]
+        public void convertTo_15_XV()
+        {
+            int input = 15;
+            string expected = "XV";
+
+            string actual = DeciToRomanConvertor.convertTo(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
         public void convertTo_16_XVI()
         {
             int input = 16;
@@ -197,18 +210,41 @@ namespace Decimal_Roman_Convertor
             Assert.AreEqual(expected, actual);
         }
 
-        #region Helpers
         [TestMethod]
-        public void reverseString_Imlegend_dnegelmI()
+        public void convertTo_40_XL()
         {
-            string input = "Imlegend";
-            string expected = "dnegelmI";
+            int input = 40;
+            string expected = "XL";
 
-            string actual = DeciToRomanConvertor.reverseString(input);
+            string actual = DeciToRomanConvertor.convertTo(input);
 
             Assert.AreEqual(expected, actual);
         }
 
         #endregion
+
+        [TestMethod]
+        public void convertTo_44_XLIV()
+        {
+            int input = 44;
+            string expected = "XLIV";
+
+            string actual = DeciToRomanConvertor.convertTo(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void convertTo_45_XLV()
+        {
+            int input = 45;
+            string expected = "XLV";
+
+            string actual = DeciToRomanConvertor.convertTo(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
     }
 }

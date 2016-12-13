@@ -8,8 +8,8 @@ namespace Decimal_Roman_Convertor
 {
     public class RomanNumeral
     {
-        private int[] specialCasesArabNotation = {1,4,9};
-        private string[] specialCasesRomanNotation = {"I","V","X"};
+        private int[] specialCasesArabNotation = {50,10,5,1};
+        private string[] specialCasesRomanNotation = {"L","X","V","I"};
 
         public void Dispose()
         {
@@ -19,62 +19,27 @@ namespace Decimal_Roman_Convertor
         public string convertTo(int input)
         {
             string output = string.Empty;
-
-            while (input > 9)
+            foreach (string romanNumber in specialCasesRomanNotation)
             {
-                output += "X";
-                input -= 10;
-            }
+                int indexOfRomanNumber = Array.IndexOf(specialCasesRomanNotation, romanNumber);
+                int arabNumber = specialCasesArabNotation[indexOfRomanNumber];
 
-            if (input == 9)
-            {
-                output += "IX";
-                return output;
+                int specialCaseTriggeringNumber = 1;
+                if (indexOfRomanNumber != specialCasesRomanNotation.Length -1 )
+                    specialCaseTriggeringNumber = specialCasesArabNotation[indexOfRomanNumber + 1];
+                //specialCaseTriggeringNumber
+                while (input >= arabNumber - 1 && input !=0 )
+                {
+                    input -= arabNumber;
+                    if (input < 0)
+                    {
+                        output += convertTo(Math.Abs(input));
+                    }
+                    output += romanNumber;
+                }
             }
-
-
-            while (input > 4)
-            {
-                output += "V";
-                input -= 5;
-            }
-
-            if (input == 4)
-            {
-                output += "IV";
-                return output;
-            }
-          
-            output += convertToI(input);
-            
-            //The number was build in reverse order. Print it correct way.
-            //output = reverseString(output);
 
             return output;
-        }
-
-        public string convertToI(int input)
-        {
-            if (input < 0)
-                return string.Empty;
-
-            string output = string.Empty;
-
-            for (int i = 0; i < input; ++i)
-                output = "I" + output;
-
-            return output;
-        }
-
-        public string reverseString(string stringToReverse)
-        {
-            if (stringToReverse == "")
-                return string.Empty;
-    
-            char[] arr = stringToReverse.ToCharArray();
-	        Array.Reverse(arr);
-
-	        return new string(arr);
         }
     }
 }
