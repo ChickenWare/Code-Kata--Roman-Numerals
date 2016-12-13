@@ -186,7 +186,16 @@ namespace Decimal_Roman_Convertor
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void convertTo_39_XXXIX()
+        {
+            int input = 39;
+            string expected = "XXXIX";
 
+            string actual = DeciToRomanConvertor.convertTo(input);
+
+            Assert.AreEqual(expected, actual);
+        }
 
         #region Helpers
         [TestMethod]

@@ -8,6 +8,8 @@ namespace Decimal_Roman_Convertor
 {
     public class RomanNumeral
     {
+        private int[] specialCasesArabNotation = {1,4,9};
+        private string[] specialCasesRomanNotation = {"I","V","X"};
 
         public void Dispose()
         {
@@ -18,7 +20,7 @@ namespace Decimal_Roman_Convertor
         {
             string output = string.Empty;
 
-            if (input > 9)
+            while (input > 9)
             {
                 output += "X";
                 input -= 10;
@@ -31,7 +33,7 @@ namespace Decimal_Roman_Convertor
             }
 
 
-            if (input > 4)
+            while (input > 4)
             {
                 output += "V";
                 input -= 5;
@@ -42,9 +44,7 @@ namespace Decimal_Roman_Convertor
                 output += "IV";
                 return output;
             }
-
-            //input = Math.Abs(input);
-            
+          
             output += convertToI(input);
             
             //The number was build in reverse order. Print it correct way.
