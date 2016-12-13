@@ -8,8 +8,8 @@ namespace Decimal_Roman_Convertor
 {
     public class RomanNumeral
     {
-        private int[] specialCasesArabNotation = {50,10,5,1};
-        private string[] specialCasesRomanNotation = {"L","X","V","I"};
+        private int[] specialCasesArabNotation = { 1000, 900, 500, 400,100, 90, 50, 40, 10, 9, 5, 4, 1 };
+        private string[] specialCasesRomanNotation = {"M", "CM","D","CD","C","XC","L","XL", "X", "IX","V", "IV", "I" };
 
         public void Dispose()
         {
@@ -24,11 +24,7 @@ namespace Decimal_Roman_Convertor
                 int indexOfRomanNumber = Array.IndexOf(specialCasesRomanNotation, romanNumber);
                 int arabNumber = specialCasesArabNotation[indexOfRomanNumber];
 
-                int specialCaseTriggeringNumber = 1;
-                if (indexOfRomanNumber != specialCasesRomanNotation.Length -1 )
-                    specialCaseTriggeringNumber = specialCasesArabNotation[indexOfRomanNumber + 1];
-                //specialCaseTriggeringNumber
-                while (input >= arabNumber - 1 && input !=0 )
+                while (input >= arabNumber && input != 0)
                 {
                     input -= arabNumber;
                     if (input < 0)
