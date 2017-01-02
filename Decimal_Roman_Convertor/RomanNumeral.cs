@@ -8,8 +8,23 @@ namespace Decimal_Roman_Convertor
 {
     public class RomanNumeral
     {
-        private int[] specialCasesArabNotation = { 1000, 900, 500, 400,100, 90, 50, 40, 10, 9, 5, 4, 1 };
-        private string[] specialCasesRomanNotation = {"M", "CM","D","CD","C","XC","L","XL", "X", "IX","V", "IV", "I" };
+
+        private Dictionary<string, int> arabByRomanNumber = new Dictionary<string, int> 
+        {
+            {"M", 1000},
+            {"CM",900},
+            {"D",500},
+            {"CD",400},
+            {"C",100},
+            {"XC",90},
+            {"L",50},
+            {"XL", 40},
+            {"X", 10},
+            {"IX",9},
+            {"V", 5},
+            {"IV",4},
+            {"I",1}
+        };
 
         public void Dispose()
         {
@@ -19,18 +34,13 @@ namespace Decimal_Roman_Convertor
         public string convertTo(int input)
         {
             string output = string.Empty;
-            foreach (string romanNumber in specialCasesRomanNotation)
-            {
-                int indexOfRomanNumber = Array.IndexOf(specialCasesRomanNotation, romanNumber);
-                int arabNumber = specialCasesArabNotation[indexOfRomanNumber];
 
-                while (input >= arabNumber && input != 0)
+            foreach (string romanNumber in arabByRomanNumber.Keys)
+            {
+                int arabNumber = arabByRomanNumber[romanNumber];
+                while (input >= arabNumber)
                 {
                     input -= arabNumber;
-                    if (input < 0)
-                    {
-                        output += convertTo(Math.Abs(input));
-                    }
                     output += romanNumber;
                 }
             }
